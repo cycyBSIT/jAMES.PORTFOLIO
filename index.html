@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming Login & Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <video autoplay muted loop id="bgVideo">
+        <source src="backgroundvid.mp4.mp4" type="video/mp4">
+    </video>
+
+    <button id="logoutBtn">LOG OUT</button>
+
+  
+    <div id="loginForm" class="container">
+        <h1>Log In</h1>
+
+        <input type="text" id="loginUser" placeholder="Username">
+        <input type="password" id="loginPass" placeholder="Password">
+
+        <button id="loginBtn">Login</button>
+
+        <button class="social-btn fb-btn" onclick="fbLogin()">Login with Facebook</button>
+        <button class="social-btn google-btn" onclick="googleLogin()">Login with Google</button>
+
+        <div class="links">
+            <a id="forgotPass">Forgot Password?</a>
+            <a id="showSignup">Don't have an account? Sign Up</a>
+        </div>
+    </div>
+
+    
+    <div id="signupForm" class="container" style="display:none;">
+        <h1>Create Account</h1>
+
+        <input type="text" id="newUser" placeholder="Create Username">
+        <input type="password" id="newPass" placeholder="Create Password">
+
+        <button id="createBtn">Create Account</button>
+
+        <div class="links">
+            <a id="backToLogin">Back to Login</a>
+        </div>
+    </div>
+
+    
+    <div id="portfolio" class="container" style="display:none;">
+        <h1 class="glow">My Portfolio</h1>
+
+        <div class="portfolio-box">
+            <img src="me.jpg">
+
+            <div class="portfolio-info">
+                <p><strong>Name:</strong> Cyril Nhel M. Inocente</p>
+                <p><strong>Age:</strong> 18</p>
+                <p><strong>Birthday:</strong> December 4, 2006</p>
+                <p><strong>Address:</strong> P-6 Brgy Poblacion, Magallanes Agus Del Norte</p>
+
+                <h3>Facebook:</h3>
+                <a href="https://www.facebook.com/Cyrilnhel123">My Facebook</a>
+
+                <h3>Gmail:</h3>
+                <p>cyrilnhel.inocente@csucc.edu.ph</p>
+            </div>
+        </div>
+    </div>
+
+    <canvas id="thunderCanvas"></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html>

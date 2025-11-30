@@ -1,0 +1,370 @@
+The Final Project ITE10
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaming Login & Portfolio</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background-color: #0d0d0d;
+            overflow-x: hidden;
+            color: #a8ff60;
+        }
+
+
+        #bgVideo {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -3;
+        }
+
+        .container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 350px;
+            background: rgba(0, 0, 0, 0.85);
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px #a8ff60;
+            text-align: center;
+            z-index: 5;
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 0 0 10px #a8ff60;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 12px 0;
+            border: none;
+            border-radius: 8px;
+            background: #0d0d0d;
+            color: #a8ff60;
+            font-size: 16px;
+            box-shadow: 0 0 5px #a8ff60;
+        }
+
+        input:focus {
+            outline: none;
+            box-shadow: 0 0 15px #a8ff60;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            background: #a8ff60;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 0 10px #a8ff60;
+        }
+
+        button:hover {
+            background: #7ed957;
+            box-shadow: 0 0 15px #a8ff60;
+        }
+
+
+        .social-btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            color: white;
+        }
+
+        .fb-btn {
+            background: #1877f2;
+            box-shadow: 0 0 10px #1877f2;
+        }
+
+        .fb-btn:hover {
+            background: #0f5fcf;
+        }
+
+        .google-btn {
+            background: #db4437;
+            box-shadow: 0 0 10px #db4437;
+        }
+
+        .google-btn:hover {
+            background: #b3362b;
+        }
+
+        .links {
+            margin-top: 15px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .links a {
+            color: #7ed957;
+            font-size: 14px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+
+        #portfolio {
+            display: none;
+            width: 450px;
+        }
+
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -2;
+        }
+
+        .portfolio-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            text-align: left;
+        }
+
+        .portfolio-box img {
+            width: 150px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px #a8ff60;
+        }
+
+        .portfolio-info {
+            font-size: 15px;
+        }
+
+        .portfolio-info a {
+            color: #7ed957;
+        }
+
+       
+        #logoutBtn {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            padding: 4px 8px;      
+            background: red;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 10px;      
+            box-shadow: 0 0 5px red;
+            display: none;
+            z-index: 999;
+            width: auto;          
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+    <video autoplay muted loop id="bgVideo">
+        <source src="backgroundvid.mp4" type="video/mp4">
+    </video>
+
+
+    <button id="logoutBtn">LOG OUT</button>
+
+
+    <div id="loginForm" class="container">
+        <h1>Log In</h1>
+
+        <input type="text" id="loginUser" placeholder="Username">
+        <input type="password" id="loginPass" placeholder="Password">
+
+        <button id="loginBtn">Login</button>
+
+        <button class="social-btn fb-btn" onclick="fbLogin()">Login with Facebook</button>
+        <button class="social-btn google-btn" onclick="googleLogin()">Login with Google</button>
+
+        <div class="links">
+            <a id="forgotPass">Forgot Password?</a>
+            <a id="showSignup">Don't have an account? Sign Up</a>
+        </div>
+    </div>
+
+    <div id="signupForm" class="container" style="display:none;">
+        <h1>Create Account</h1>
+
+        <input type="text" id="newUser" placeholder="Create Username">
+        <input type="password" id="newPass" placeholder="Create Password">
+
+        <button id="createBtn">Create Account</button>
+
+        <div class="links">
+            <a id="backToLogin">Back to Login</a>
+        </div>
+    </div>
+
+    <div id="portfolio" class="container">
+        <h1 class="glow">My Portfolio</h1>
+
+        <div class="portfolio-box">
+            <img src="me.jpg">
+
+            <div class="portfolio-info">
+                <p><strong>Name:</strong> Cyril Nhel M. Inocente</p>
+                <p><strong>Age:</strong> 18</p>
+                <p><strong>Birthday:</strong> December 4, 2006</p>
+                <p><strong>Address:</strong> P-6 Brgy Poblacion, Magallanes Agus Del Norte</p>
+
+                <h3>Facebook:</h3>
+                <a href="https://www.facebook.com/Cyrilnhel123">My Facebook</a>
+
+                <h3>Gmail:</h3>
+                <p>cyrilnhel.inocente@csucc.edu.ph</p>
+            </div>
+        </div>
+    </div>
+
+    <canvas id="thunderCanvas"></canvas>
+
+    <script>
+       
+        const canvas = document.getElementById('thunderCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        function random(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        function drawThunder() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            if (Math.random() < 0.05) {
+                for (let i = 0; i < 3; i++) {
+                    let x = random(0, canvas.width);
+                    let y = random(0, canvas.height / 2);
+
+                    ctx.strokeStyle = 'rgba(168, 255, 96, 0.8)';
+                    ctx.lineWidth = 2;
+                    ctx.beginPath();
+                    ctx.moveTo(x, y);
+
+                    for (let j = 0; j < 10; j++) {
+                        x += random(-30, 30);
+                        y += random(10, 30);
+                        ctx.lineTo(x, y);
+                    }
+                    ctx.stroke();
+                }
+            }
+            requestAnimationFrame(drawThunder);
+        }
+        drawThunder();
+
+        const realUser = "Cyril";
+        const realPass = "12345";
+
+        let savedUser = "";
+        let savedPass = "";
+
+        const loginForm = document.getElementById("loginForm");
+        const signupForm = document.getElementById("signupForm");
+        const portfolio = document.getElementById("portfolio");
+        const logoutBtn = document.getElementById("logoutBtn");
+
+        function fbLogin() {
+            alert("Facebook login simulated!");
+            loginForm.style.display = "none";
+            portfolio.style.display = "block";
+            logoutBtn.style.display = "block";
+        }
+
+        function googleLogin() {
+            alert("Google login simulated!");
+            loginForm.style.display = "none";
+            portfolio.style.display = "block";
+            logoutBtn.style.display = "block";
+        }
+
+        document.getElementById("showSignup").onclick = () => {
+            loginForm.style.display = "none";
+            signupForm.style.display = "block";
+        };
+
+        document.getElementById("backToLogin").onclick = () => {
+            signupForm.style.display = "none";
+            loginForm.style.display = "block";
+        };
+
+        document.getElementById("forgotPass").onclick = () => {
+            alert("Real Account:\nUsername: Cyril\nPassword: 12345");
+        };
+
+        document.getElementById("createBtn").onclick = () => {
+            savedUser = document.getElementById("newUser").value.trim();
+            savedPass = document.getElementById("newPass").value.trim();
+
+            if (!savedUser || !savedPass) {
+                alert("Please fill out all fields!");
+                return;
+            }
+
+            alert("Account Created! You can now login.");
+
+            signupForm.style.display = "none";
+            loginForm.style.display = "block";
+        };
+
+        document.getElementById("loginBtn").onclick = () => {
+            const user = document.getElementById("loginUser").value.trim();
+            const pass = document.getElementById("loginPass").value.trim();
+
+            if (
+                (user === realUser && pass === realPass) ||
+                (user === savedUser && pass === savedPass)
+            ) {
+                loginForm.style.display = "none";
+                portfolio.style.display = "block";
+                logoutBtn.style.display = "block";
+            } else {
+                alert("Incorrect username or password!");
+            }
+        };
+
+        logoutBtn.onclick = () => {
+            portfolio.style.display = "none";
+            loginForm.style.display = "block";
+            logoutBtn.style.display = "none";
+        };
+    </script>
+
+</body>
+</html>
+
